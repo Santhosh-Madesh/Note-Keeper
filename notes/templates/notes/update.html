@@ -1,0 +1,9 @@
+{% extends 'notes/index.html' %}
+{% block title %}Note Update{% endblock title %}
+{% block content %}
+  <form action="{% url 'update' pk %}" method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Update">
+  </form>
+{% endblock content %}
