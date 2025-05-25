@@ -6,7 +6,22 @@
     <title>{% block title %}Home page{% endblock title %}</title>
 </head>
 <body>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'create' %}">Create note</a>
+        <a href="">About</a>
+    </nav>
     {% block content %}
+    {% if context %}
+      {% for data in context %}
+        <p>
+            {{data.title}}<br>
+            {{data.content}}<br>
+        </p>
+      {% endfor %}
+    {% else %}
+    <p>No data yet. add a note? <a href="{% url 'create' %}">add a note</a></p>
+    {% endif %}
     {% endblock content %}
 </body>
 </html>
