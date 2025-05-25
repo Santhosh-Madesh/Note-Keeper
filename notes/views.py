@@ -4,6 +4,17 @@ from .forms import NoteForm
 from .models import NoteModel
 
 def index(request):
+    n = NoteModel.objects.all()
+    if n:
+        context = []
+        for field in n:
+            context.append(
+                {
+                "title":field.title,
+                "content":field.content,
+                }
+            )
+        return render(request,"notes/index.html",{'context':context})
     return render(request,"notes/index.html")
 
 def create(request):
