@@ -15,7 +15,7 @@
     {% if context %}
       {% for data in context %}
         <p>
-            {{data.title}}<br>
+            {{data.title}} (<a href="">update</a>|<a href="">delete</a>)<br>
             {{data.content}}<br>
         </p>
       {% endfor %}
