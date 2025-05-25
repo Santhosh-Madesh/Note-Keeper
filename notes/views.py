@@ -29,3 +29,9 @@ def create(request):
             return HttpResponse("Form is working")
     form = NoteForm()
     return render(request,"notes/create.html",{'form':form})
+
+def update(request,pk):
+    return request(request,"")
+
+def delete(request,pk):
+    return render(request,"")
