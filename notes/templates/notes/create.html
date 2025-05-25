@@ -1,0 +1,9 @@
+{% extends 'notes/index.html' %}
+{% block title %} Creation Page {% endblock title %}
+{% block content %}
+    <form action="{% url 'create' %}" method="post">
+        {% csrf_token  %}
+        {{form}}
+        <input type="submit" value="Create Note">
+    </form>
+{% endblock content %}
