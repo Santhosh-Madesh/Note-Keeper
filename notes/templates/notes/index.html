@@ -9,7 +9,7 @@
     <nav>
         <a href="{% url 'index' %}">Home</a>
         <a href="{% url 'create' %}">Create note</a>
-        <a href="">About</a>
+        <a href="{% url 'about' %}">About</a>
     </nav>
     {% block content %}
     {% if context %}
