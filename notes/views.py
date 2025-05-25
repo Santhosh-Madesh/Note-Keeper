@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import NoteForm
 from .models import NoteModel
@@ -31,7 +31,9 @@ def create(request):
     return render(request,"notes/create.html",{'form':form})
 
 def update(request,pk):
-    return request(request,"")
+    return HttpResponse(f"{pk}")
 
 def delete(request,pk):
-    return render(request,"")
+    n = NoteModel.objects.get(pk=pk)
+    n.delete()
+    return redirect('index')
