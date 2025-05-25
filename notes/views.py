@@ -12,6 +12,7 @@ def index(request):
                 {
                 "title":field.title,
                 "content":field.content,
+                "pk":field.pk,
                 }
             )
         return render(request,"notes/index.html",{'context':context})
