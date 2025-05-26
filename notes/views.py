@@ -26,14 +26,33 @@ def create(request):
             content = form.cleaned_data["content"]
             n = NoteModel(title=title,content=content)
             n.save()
-            return HttpResponse("Form is working")
+            return redirect('index')
     form = NoteForm()
     return render(request,"notes/create.html",{'form':form})
 
 def update(request,pk):
-    return HttpResponse(f"{pk}")
+    if request.method == "POST":
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            content = form.cleaned_data['content']
+            n1 = NoteModel.objects.get(pk=pk)
+            n1.delete()
+            n2 = NoteModel(title=title,content=content)
+            n2.save()
+            return redirect('index')
+    pk=pk
+    n = NoteModel.objects.get(pk=pk)
+    title = n.title
+    content = n.content
+    form = NoteForm(initial={"title":title,"content":content})
+
+    return render(request,"notes/update.html",{'form':form,'pk':pk})
 
 def delete(request,pk):
     n = NoteModel.objects.get(pk=pk)
     n.delete()
     return redirect('index')
+
+def about(request):
+    return render(request,"notes/about.html")
