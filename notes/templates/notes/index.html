@@ -6,11 +6,13 @@
     <title>{% block title %}Home page{% endblock title %}</title>
 </head>
 <body>
+  {% block nav %}
     <nav>
         <a href="{% url 'index' %}">Home</a>
         <a href="{% url 'create' %}">Create note</a>
         <a href="{% url 'about' %}">About</a>
     </nav>
+  {% endblock nav %}
     {% block content %}
     {% if context %}
       {% for data in context %}
